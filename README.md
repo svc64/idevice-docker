@@ -2,6 +2,8 @@
 
 idevice tools mega pack + backup server in a docker container
 
+This container can function as a backup server or as a toolkit for iDevices. Not setting `BACKUP_SERVER` makes the container run a shell and nothing else.
+
 # How to use
 If you have usbmuxd on your system (reasonable to have by default on a desktop distro), disable it for the current boot before running this container:
 ```
@@ -29,7 +31,7 @@ services:
     network_mode: host
     environment:
       - BACKUP_SERVER=1 # If not set, container drops to shell and runs nothing else
-      - BACKUP_TIME=3600
+      - BACKUP_TIME=3600 # Interval between backups (in seconds), for the backup server
     volumes:
       - ./pairing:/var/lib/lockdown # Pairing records
       - ./backups:/data/idevice-backups # Backups path
