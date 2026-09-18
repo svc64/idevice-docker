@@ -1,0 +1,21 @@
+# compose.yaml
+services:
+  backup-server:
+    stdin_open: true
+    tty: true
+    image: idevice:latest
+    network_mode: host
+    environment:
+      - BACKUP_SERVER=1 # If not set, container drops to shell and runs nothing else
+      - BACKUP_TIME=3600
+    volumes:
+      - ./pairing:/var/lib/lockdown
+      - ./backups:/data/idevice-backups
+      - type: bind
+        source: /dev/bus/usb
+        target: /dev/bus/usb
+      - type: bind
+        source: ./pairing
+        target: /var/lib/lockdown
+    device_cgroup_rules:
+      - "c 189:* rmw"
