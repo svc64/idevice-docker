@@ -10,7 +10,7 @@ RUN cd /work/netmuxd && \
     cargo build --release --bin netmuxd
 
 FROM debian:latest
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     git \
     build-essential \
     make \
