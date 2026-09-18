@@ -36,9 +36,6 @@ services:
       - type: bind
         source: /dev/bus/usb
         target: /dev/bus/usb
-      - type: bind
-        source: ./pairing
-        target: /var/lib/lockdown
     device_cgroup_rules:
       - "c 189:* rmw"
 ```
