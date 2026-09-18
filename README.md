@@ -39,4 +39,4 @@ services:
     device_cgroup_rules:
       - "c 189:* rmw"
 ```
-- Run: `docker compose up` (foreground) / `docker-compose up -d` (background)
+- Run: `docker compose up` (foreground) / `docker compose up -d` (background)
