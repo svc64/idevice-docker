@@ -28,6 +28,7 @@ services:
     stdin_open: true
     tty: true
     image: idevice:latest
+    restart: unless-stopped # Restart on crash and on host reboot. Drop this if you unset BACKUP_SERVER, or the shell will restart-loop
     network_mode: host
     environment:
       - BACKUP_SERVER=1 # If not set, container drops to shell and runs nothing else

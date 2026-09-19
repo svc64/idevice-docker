@@ -43,7 +43,7 @@ while pymobiledevice3 lockdown date; do # Just check if the device remains onlin
     fi
 
     export PYMOBILEDEVICE3_UDID=${UDID}
-    pymobiledevice3 lockdown date || (echo "Device not connected..." && exit 0)
+    pymobiledevice3 lockdown date || { echo "Device not connected..."; exit 0; }
 
     # Delete in progress backup...
     rm -rf "${BACKUPS_DIR}/${UDID}.backup.inprogress"
@@ -56,6 +56,8 @@ while pymobiledevice3 lockdown date; do # Just check if the device remains onlin
         if compgen -G "${BACKUPS_DIR}/${UDID}.backup.deleteme.*" > /dev/null; then
             rm -rf "${BACKUPS_DIR}/${UDID}.backup.deleteme."*
         fi
+    else
+        echo "Backup failed for ${UDID} (exit $?), keeping previous backup" >&2
     fi
 
     printf '%s\n' "$now" > "$last_run_file"

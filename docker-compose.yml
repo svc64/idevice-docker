@@ -4,6 +4,7 @@ services:
     stdin_open: true
     tty: true
     image: idevice:latest
+    restart: unless-stopped
     network_mode: host
     environment:
       - BACKUP_SERVER=1 # If not set, container drops to shell and runs nothing else

@@ -2,3 +2,4 @@
 pairing
 backups
 .DS_Store
+*.nobackup
