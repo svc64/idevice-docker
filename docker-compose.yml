@@ -12,6 +12,7 @@ services:
     volumes:
       - ./pairing:/var/lib/lockdown
       - ./backups:/data/idevice-backups
+      - /run/udev:/run/udev:ro
       - type: bind
         source: /dev/bus/usb
         target: /dev/bus/usb
